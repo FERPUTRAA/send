@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,19 +14,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "./ui/textarea";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { getSpotifyToken } from "@/lib/spotifyToken";
+import SearchBar from "./SearchBar";
 
 const formValidation = z.object({
   recipient: z
@@ -37,6 +26,8 @@ const formValidation = z.object({
 });
 
 const SubmitForm = () => {
+  const [token, setToken] = useState<string>("");
+
   const form = useForm<z.infer<typeof formValidation>>({
     defaultValues: {
       recipient: "",
@@ -53,6 +44,16 @@ const SubmitForm = () => {
     console.log(data);
     form.reset();
   };
+
+  useEffect(() => {
+    const getToken = async () => {
+      const token = await getSpotifyToken();
+      setToken(token.access_token);
+    };
+
+    getToken();
+  }, []);
+
   return (
     <Form {...form}>
       <form
@@ -90,6 +91,23 @@ const SubmitForm = () => {
                 <Textarea placeholder="drop your thoughts here..." {...field} />
               </FormControl>
               <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="song_id"
+          render={({ field }) => (
+            <FormItem className="flex flex-col">
+              <FormLabel className="font-normal text-gray-700">
+                Choose a Song
+              </FormLabel>
+              {token ? (
+                <SearchBar token={token} form={form} field={field} />
+              ) : (
+                <p>Loading...</p>
+              )}
             </FormItem>
           )}
         />

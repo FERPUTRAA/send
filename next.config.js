@@ -5,6 +5,15 @@
 import "./src/env.js";
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+  images: {
+    remotePatterns: [
+      {
+        hostname: "i.scdn.c",
+        protocol: "https",
+      },
+    ],
+  },
+};
 
 export default config;

@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import "@/styles/globals.css";
+import { QueryProvider } from "@/utils/QueryProvider";
 
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
@@ -15,10 +16,12 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
-      <body>
-        <Navbar />
-        {children}
-      </body>
+      <QueryProvider>
+        <body>
+          <Navbar />
+          {children}
+        </body>
+      </QueryProvider>
     </html>
   );
 }
