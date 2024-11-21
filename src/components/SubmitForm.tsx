@@ -16,6 +16,10 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { getSpotifyToken } from "@/lib/spotifyToken";
 import SearchBar from "./SearchBar";
+import axios from "axios";
+import { env } from "@/env";
+import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 const formValidation = z.object({
   recipient: z
@@ -26,6 +30,8 @@ const formValidation = z.object({
 });
 
 const SubmitForm = () => {
+  const router = useRouter();
+  const { toast } = useToast();
   const [token, setToken] = useState<string>("");
 
   const form = useForm<z.infer<typeof formValidation>>({
@@ -40,9 +46,25 @@ const SubmitForm = () => {
   const onSubmit: SubmitHandler<z.infer<typeof formValidation>> = async (
     data,
   ) => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log(data);
-    form.reset();
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await axios.post(
+        `${env.NEXT_PUBLIC_API_PORT}/post`,
+        data,
+      );
+
+      if (response.status === 201) {
+        form.reset();
+        toast({
+          title: "Success",
+          description: "Message created successfully",
+          variant: "default",
+        });
+        router.push("/");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {

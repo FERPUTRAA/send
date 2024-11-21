@@ -4,6 +4,7 @@ import { QueryProvider } from "@/utils/QueryProvider";
 
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -20,6 +21,7 @@ export default function RootLayout({
         <body>
           <Navbar />
           {children}
+          <Toaster />
         </body>
       </QueryProvider>
     </html>
