@@ -1,4 +1,5 @@
 import CustomCard from "@/components/CustomCard";
+import MarqueeComponent from "@/components/MarqueeComponent";
 import { Button } from "@/components/ui/button";
 
 const cardData = [
@@ -41,7 +42,7 @@ export default function HomePage() {
           <Button variant={"outline"}>Support the Developer</Button>
         </div>
 
-        <div className="mt-12 grid grid-cols-3 gap-5">
+        <div className="mt-12 grid grid-cols-3 gap-3">
           {cardData.map((card, i) => (
             <CustomCard
               key={i}
@@ -52,6 +53,10 @@ export default function HomePage() {
               btnVariant={card.btnVariant}
             />
           ))}
+        </div>
+
+        <div className="mt-5 w-full overflow-hidden">
+          <MarqueeComponent />
         </div>
       </div>
     </main>

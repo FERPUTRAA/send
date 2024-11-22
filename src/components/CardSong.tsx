@@ -24,13 +24,12 @@ const CardSong = ({
 }) => {
   return (
     <>
-      <Card className="flex h-full items-start gap-5 overflow-hidden p-4">
-        <SongDetail song_id={song_id} />
+      <Card className="h-full max-w-lg overflow-hidden p-4">
         <div className="w-full">
           <CardHeader className="p-0">
             <CardTitle className="text-base font-light">
               To:{" "}
-              <span className="font-reenie text-2xl tracking-wider">
+              <span className="text-sm font-medium tracking-wider">
                 {recipient.toLowerCase()}
               </span>
             </CardTitle>
@@ -39,11 +38,12 @@ const CardSong = ({
             </CardDescription>
           </CardHeader>
           <CardContent className="mt-2 p-0">
-            <p className="font-reenie text-3xl font-medium text-gray-700">
+            <p className="h-20 font-reenie text-3xl font-medium text-gray-700">
               {message.length > 50 ? `${message.slice(0, 50)}...` : message}
             </p>
+            <SongDetail song_id={song_id} />
           </CardContent>
-          <CardFooter className="mt-3 p-0 text-sm font-normal text-gray-300">
+          <CardFooter className="mt-3 p-0 text-sm font-light text-gray-500">
             {format(date, "PPPP", { locale: id })}
           </CardFooter>
         </div>
