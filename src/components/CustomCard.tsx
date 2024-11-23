@@ -30,7 +30,7 @@ const CustomCard = ({
     | undefined;
 }) => {
   return (
-    <Card className="w-[27rem]">
+    <Card className="w-full">
       <CardHeader>
         <CardTitle className="font-reenie text-3xl font-normal">
           {title}

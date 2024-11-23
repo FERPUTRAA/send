@@ -46,6 +46,7 @@ const SearchBar = ({
 }) => {
   const [search, setSearch] = useState<string>("");
   const [debouncedSearch] = useDebounce(search, 2000);
+  const [open, setOpen] = useState(false);
 
   const { data, isLoading, error } = useQuery<Main>({
     queryKey: ["search", debouncedSearch],
@@ -67,10 +68,10 @@ const SearchBar = ({
   const tracks = data?.tracks.items || [];
   return (
     <FormItem className="flex flex-col">
-      <Popover>
+      <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <FormControl>
-            <Button variant={"outline"} role="combobox">
+            <Button variant={"outline"} role="combobox" aria-expanded={open}>
               {field?.value
                 ? tracks.find((track) => track.id === field.value)?.name
                 : "Select a song"}
@@ -90,7 +91,10 @@ const SearchBar = ({
                 <CommandItem
                   key={track.id}
                   value={track.id}
-                  onSelect={() => form.setValue("song_id", track.id)}
+                  onSelect={() => {
+                    form.setValue("song_id", track.id);
+                    setOpen(false);
+                  }}
                   className="flex items-center gap-3"
                 >
                   <img

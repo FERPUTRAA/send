@@ -3,12 +3,12 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getSingleMessage } from "@/lib/getSingleMessage";
 import { format } from "date-fns";
-import SongDetail from "./SongDetail";
+import { getSingleTrack } from "@/lib/getSingleTrack";
 
-const CardDetail = ({ post_id }: { post_id?: string }) => {
+const CardDetail = ({ post_id }: { post_id: string }) => {
   const { data, error, isLoading } = useQuery({
     queryKey: ["postDetail"],
-    queryFn: async () => await getSingleMessage(post_id as string),
+    queryFn: async () => await getSingleMessage(post_id),
   });
 
   if (error) return <p>{error.message}</p>;
@@ -27,7 +27,7 @@ const CardDetail = ({ post_id }: { post_id?: string }) => {
         </p>
       </div>
 
-      <SongDetail song_id={res.song_id} />
+      <SongDetailCard song_id={res.song_id} />
 
       <div className="space-y-3">
         <h1 className="text-center text-base font-medium tracking-wide text-gray-400">
@@ -41,6 +41,42 @@ const CardDetail = ({ post_id }: { post_id?: string }) => {
         </p>
       </div>
     </>
+  );
+};
+
+const SongDetailCard = ({ song_id }: { song_id: string }) => {
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["singleTrack", song_id],
+    queryFn: async () => getSingleTrack(song_id),
+    enabled: song_id !== "",
+  });
+
+  if (error) return <p className="text-red-500">{error.message}</p>;
+  if (isLoading) return <p>Loading...</p>;
+  if (!data) return <p className="text-red-500">No data found.</p>;
+  return (
+    <div className="mx-auto max-w-sm rounded-xl border-2 border-gray-300 p-5">
+      <div className="flex items-start gap-3">
+        <img
+          src={data.album.images[0]?.url}
+          alt={data.album.name}
+          className="w-28 rounded-xl"
+        />
+        <div className="">
+          <p className="text-sm font-normal">{data.artists[0]?.name}</p>
+          <a
+            href={data.external_urls.spotify}
+            target="_blank"
+            className="text-lg font-bold hover:underline"
+          >
+            {data.name}
+          </a>
+          <p className="text-sm font-light">
+            Album: <span className="font-semibold">{data.album.name}</span>
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 

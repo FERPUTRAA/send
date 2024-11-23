@@ -14,11 +14,23 @@ const MarqueeComponent = () => {
   if (error) return <p>{error.message}</p>;
   if (isLoading) return <p>Loading...</p>;
   if (!data) return <p>No data found</p>;
-  const res = data.data;
+  const res = data.data.slice(0, data.data.length / 2);
+  const res_2 = data.data.slice(res.length, data.data.length);
   return (
     <>
       <Marquee pauseOnHover className="[--duration:50s]">
         {res.map((item, i) => (
+          <CardSong
+            key={i}
+            date={item.createdAt}
+            message={item.message}
+            recipient={item.recipient}
+            song_id={item.song_id}
+          />
+        ))}
+      </Marquee>
+      <Marquee reverse pauseOnHover className="[--duration:50s]">
+        {res_2.map((item, i) => (
           <CardSong
             key={i}
             date={item.createdAt}

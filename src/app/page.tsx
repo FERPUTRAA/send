@@ -54,10 +54,9 @@ export default function HomePage() {
             />
           ))}
         </div>
-
-        <div className="mt-5 w-full overflow-hidden">
-          <MarqueeComponent />
-        </div>
+      </div>
+      <div className="mt-5 w-full overflow-hidden">
+        <MarqueeComponent />
       </div>
     </main>
   );
