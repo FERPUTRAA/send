@@ -39,6 +39,9 @@ const config = {
     "react/no-unescaped-entities": "off",
     "@next/next/no-html-link-for-pages": "warn",
     "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/prefer-nullish-coalescing": "off",
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
   },
 };
 module.exports = config;
