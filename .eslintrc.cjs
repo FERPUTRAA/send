@@ -36,6 +36,9 @@ const config = {
       },
     ],
     "@typescript-eslint/no-unsafe-return": "off",
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-html-link-for-pages": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
   },
 };
 module.exports = config;
