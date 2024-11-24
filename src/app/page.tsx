@@ -9,6 +9,7 @@ const cardData = [
     enableBtn: true,
     action: "Create Message",
     btnVariant: "default",
+    href: "/create",
   },
   {
     title: "Browse Messages",
@@ -17,6 +18,7 @@ const cardData = [
     enableBtn: true,
     action: "Browse Messages",
     btnVariant: "outline",
+    href: "/browse",
   },
   {
     title: "Detail Messages",
@@ -29,7 +31,7 @@ const cardData = [
 export default function HomePage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-start py-24">
-      <div className="mx-auto mt-12 max-w-screen-2xl">
+      <div className="mx-auto mt-12 max-w-screen-2xl px-5">
         <h1 className="mx-auto max-w-lg text-center font-reenie text-4xl">
           "a bunch of the untold words, sent through the song"
         </h1>
@@ -51,6 +53,7 @@ export default function HomePage() {
               enableBtn={card.enableBtn}
               action={card.action}
               btnVariant={card.btnVariant}
+              href={card.href}
             />
           ))}
         </div>

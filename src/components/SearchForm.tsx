@@ -7,6 +7,7 @@ import { getAllMessage } from "@/lib/getAllMessage";
 import { useDebounce } from "use-debounce";
 import CardSong from "./CardSong";
 import Link from "next/link";
+import Loading from "@/app/loading";
 
 const SearchForm = () => {
   const [search, setSearch] = React.useState<string>("");
@@ -17,7 +18,7 @@ const SearchForm = () => {
   });
 
   if (error) return <p className="text-red-500">{error.message}</p>;
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading />;
   if (!data) return <p className="text-red-500">No data found.</p>;
   const res = data.data;
   return (

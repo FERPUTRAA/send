@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getSingleMessage } from "@/lib/getSingleMessage";
 import { format } from "date-fns";
 import { getSingleTrack } from "@/lib/getSingleTrack";
+import Loading from "@/app/loading";
 
 const CardDetail = ({ post_id }: { post_id: string }) => {
   const { data, error, isLoading } = useQuery({
@@ -12,7 +13,7 @@ const CardDetail = ({ post_id }: { post_id: string }) => {
   });
 
   if (error) return <p>{error.message}</p>;
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading />;
   if (!data) return <p>No data Found...</p>;
   const res = data.data;
   return (
@@ -52,7 +53,7 @@ const SongDetailCard = ({ song_id }: { song_id: string }) => {
   });
 
   if (error) return <p className="text-red-500">{error.message}</p>;
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading />;
   if (!data) return <p className="text-red-500">No data found.</p>;
   return (
     <div className="mx-auto max-w-sm rounded-xl border-2 border-gray-300 p-5">

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   Card,
@@ -7,6 +8,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Button } from "./ui/button";
+import { useRouter } from "next/navigation";
 
 const CustomCard = ({
   title,
@@ -14,6 +16,7 @@ const CustomCard = ({
   enableBtn,
   action,
   btnVariant,
+  href,
 }: {
   title?: string;
   content?: string;
@@ -28,7 +31,9 @@ const CustomCard = ({
     | "ghost"
     | null
     | undefined;
+  href?: string;
 }) => {
+  const router = useRouter();
   return (
     <Card className="w-full">
       <CardHeader>
@@ -41,7 +46,12 @@ const CustomCard = ({
       </CardContent>
       {enableBtn ? (
         <CardFooter>
-          <Button variant={btnVariant}>{action}</Button>
+          <Button
+            variant={btnVariant}
+            onClick={() => href && router.push(href)}
+          >
+            {action}
+          </Button>
         </CardFooter>
       ) : null}
     </Card>

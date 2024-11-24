@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllMessage } from "@/lib/getAllMessage";
 import Marquee from "./ui/marquee";
 import CardSong from "./CardSong";
+import Loading from "@/app/loading";
 
 const MarqueeComponent = () => {
   const { data, error, isLoading } = useQuery({
@@ -12,7 +13,7 @@ const MarqueeComponent = () => {
   });
 
   if (error) return <p>{error.message}</p>;
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading />;
   if (!data) return <p>No data found</p>;
   const res = data.data.slice(0, data.data.length / 2);
   const res_2 = data.data.slice(res.length, data.data.length);
