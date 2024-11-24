@@ -56,7 +56,7 @@ const SongDetailCard = ({ song_id }: { song_id: string }) => {
   if (isLoading) return <Loading />;
   if (!data) return <p className="text-red-500">No data found.</p>;
   return (
-    <div className="mx-auto max-w-sm rounded-xl border-2 border-gray-300 p-5">
+    <div className="mx-auto max-w-xl rounded-xl border-2 border-gray-300 p-5">
       <div className="flex items-start gap-3">
         <img
           src={data.album.images[0]?.url}

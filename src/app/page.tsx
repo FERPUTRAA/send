@@ -1,6 +1,8 @@
 import CustomCard from "@/components/CustomCard";
 import MarqueeComponent from "@/components/MarqueeComponent";
 import { Button } from "@/components/ui/button";
+import { Github, Instagram } from "lucide-react";
+import Link from "next/link";
 
 const cardData = [
   {
@@ -52,7 +54,17 @@ export default function HomePage() {
               content={card.content}
               enableBtn={card.enableBtn}
               action={card.action}
-              btnVariant={card.btnVariant}
+              btnVariant={
+                card.btnVariant as
+                  | "default"
+                  | "outline"
+                  | "link"
+                  | "destructive"
+                  | "secondary"
+                  | "ghost"
+                  | null
+                  | undefined
+              }
               href={card.href}
             />
           ))}
@@ -61,6 +73,29 @@ export default function HomePage() {
       <div className="mt-5 w-full overflow-hidden">
         <MarqueeComponent />
       </div>
+
+      <footer className="bottom-0 mt-5 w-full">
+        <div className="mx-auto flex max-w-md flex-col gap-3 text-center">
+          <h2 className="text-base font-normal text-gray-500">
+            Created by{" "}
+            <span className="ml-1 font-reenie text-2xl font-bold">
+              Airlangga Pradana
+            </span>
+          </h2>
+          <p className="text-sm font-medium text-gray-400">© 2024</p>
+          <div className="flex items-center justify-center gap-3">
+            <Link href={"https://github.com/airlanggapradana"} target="_blank">
+              <Github opacity={0.5} />
+            </Link>
+            <Link
+              href={"https://www.instagram.com/iamrangga._"}
+              target="_blank"
+            >
+              <Instagram opacity={0.5} />
+            </Link>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
