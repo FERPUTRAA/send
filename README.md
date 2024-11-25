@@ -1,29 +1,33 @@
-# Create T3 App
+# 🎵 SendTheSongClone 🎵
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+**[SendTheSong](https://sendthesong.xyz/)** is a heartfelt web application that lets you **anonymously send a message to someone you love**, along with a song that expresses your feelings. Whether it's a crush, a loved one, or a friend, this app helps you share emotions in a unique way. 💌🎶
 
-## What's next? How do I make an app with this?
+---
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## 🌟 Features
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+- **Anonymity**: Send messages without revealing your identity (unless you choose to 😉).  
+- **Attach a Song**: Select a song from Spotify that captures your emotions.  
+- **Responsive Design**: Works seamlessly on desktops, tablets, and mobile devices.  
+- **Modern UI**: Styled with Tailwind CSS and **ShadCN UI** for an aesthetically pleasing experience.  
+- **Real-Time Updates**: Powered by **Supabase** for instant feedback and data synchronization.  
+- **Optimized State Management**: Leveraging **Tanstack Query** for efficient data fetching and caching.  
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+---
 
-## Learn More
+## 🛠️ Tech Stack
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+### **Frontend**  
+- ⚛️ [Next.js 15](https://nextjs.org/) (React + TypeScript)  
+- 🎨 [Tailwind CSS](https://tailwindcss.com/) for modern styling.  
+- 🌟 [ShadCN UI](https://ui.shadcn.dev/) for elegant and reusable components.  
+- 🛡️ [Tanstack Query](https://tanstack.com/query) for advanced state and server data synchronization.  
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+### **Backend**  
+- 🚀 [NestJS](https://nestjs.com/) for scalable, server-side architecture.  
+- 📦 [Supabase](https://supabase.io/) as a serverless PostgreSQL database with built-in authentication and real-time capabilities.  
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+### **Third-Party Integrations**  
+- 🎵 [Spotify API](https://developer.spotify.com/) for searching and embedding songs.  
 
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+---
