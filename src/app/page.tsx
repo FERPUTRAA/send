@@ -42,11 +42,15 @@ export default function HomePage() {
         </p>
 
         <div className="mt-7 flex items-center justify-center gap-7">
-          <Button variant={"default"}>Tell Your Story</Button>
-          <Button variant={"outline"}>Support the Developer</Button>
+          <Link href={"/create"}>
+            <Button variant={"default"}>Tell Your Story</Button>
+          </Link>
+          <Link href={"https://saweria.co/sendthesong"} target="_blank">
+            <Button variant={"outline"}>Support the Original Idea</Button>
+          </Link>
         </div>
 
-        <div className="mt-12 grid grid-cols-3 gap-3">
+        <div className="mt-12 grid grid-cols-1 gap-3 md:grid-cols-3">
           {cardData.map((card, i) => (
             <CustomCard
               key={i}
