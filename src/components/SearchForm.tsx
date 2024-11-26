@@ -28,27 +28,39 @@ const SearchForm = () => {
           type="text"
           placeholder="Search for a person"
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full"
+          className="w-screen"
         />
         <Button>Search</Button>
       </div>
 
       <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-        {res
-          .filter((post) =>
-            post.recipient.toLowerCase().includes(debouncedSearch),
-          )
-          .map((item, i) => (
-            <Link key={i} href={`/browse/${item.post_id}`}>
-              <CardSong
-                key={i}
-                recipient={item.recipient}
-                message={item.message}
-                song_id={item.song_id}
-                date={item.createdAt}
-              />
-            </Link>
-          ))}
+        {debouncedSearch !== ""
+          ? res
+              .filter((post) =>
+                post.recipient.toLowerCase().includes(debouncedSearch),
+              )
+              .map((item, i) => (
+                <Link key={i} href={`/browse/${item.post_id}`}>
+                  <CardSong
+                    key={i}
+                    recipient={item.recipient}
+                    message={item.message}
+                    song_id={item.song_id}
+                    date={item.createdAt}
+                  />
+                </Link>
+              ))
+          : res.slice(0, 6).map((item, i) => (
+              <Link key={i} href={`/browse/${item.post_id}`}>
+                <CardSong
+                  key={i}
+                  recipient={item.recipient}
+                  message={item.message}
+                  song_id={item.song_id}
+                  date={item.createdAt}
+                />
+              </Link>
+            ))}
       </div>
     </div>
   );
