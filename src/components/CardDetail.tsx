@@ -5,6 +5,7 @@ import { getSingleMessage } from "@/lib/getSingleMessage";
 import { format } from "date-fns";
 import { getSingleTrack } from "@/lib/getSingleTrack";
 import Loading from "@/app/loading";
+import { Spotify } from "react-spotify-embed";
 
 const CardDetail = ({ post_id }: { post_id: string }) => {
   const { data, error, isLoading } = useQuery({
@@ -55,28 +56,10 @@ const SongDetailCard = ({ song_id }: { song_id: string }) => {
   if (error) return <p className="text-red-500">{error.message}</p>;
   if (isLoading) return <Loading />;
   if (!data) return <p className="text-red-500">No data found.</p>;
+
   return (
-    <div className="mx-auto max-w-xl rounded-xl border-2 border-gray-300 p-5">
-      <div className="flex items-start gap-3">
-        <img
-          src={data.album.images[0]?.url}
-          alt={data.album.name}
-          className="w-28 rounded-xl"
-        />
-        <div className="">
-          <p className="text-sm font-normal">{data.artists[0]?.name}</p>
-          <a
-            href={data.external_urls.spotify}
-            target="_blank"
-            className="text-lg font-bold hover:underline"
-          >
-            {data.name}
-          </a>
-          <p className="text-sm font-light">
-            Album: <span className="font-semibold">{data.album.name}</span>
-          </p>
-        </div>
-      </div>
+    <div className="mx-auto max-w-lg">
+      <Spotify wide link={data.external_urls.spotify} height={250} />
     </div>
   );
 };
