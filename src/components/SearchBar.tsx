@@ -17,7 +17,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { FormControl, FormItem } from "./ui/form";
+import { FormControl, FormItem, FormMessage } from "./ui/form";
 import { Button } from "./ui/button";
 
 const SearchBar = ({
@@ -109,6 +109,7 @@ const SearchBar = ({
           </Command>
         </PopoverContent>
       </Popover>
+      <FormMessage />
     </FormItem>
   );
 };

@@ -26,7 +26,7 @@ const formValidation = z.object({
     .string()
     .min(3, { message: "recipient's name is at least 3 characters" }),
   message: z.string().min(10, { message: "message is required" }),
-  song_id: z.string(),
+  song_id: z.string().min(5, { message: "song is required" }),
 });
 
 const SubmitForm = () => {
@@ -125,11 +125,13 @@ const SubmitForm = () => {
               <FormLabel className="font-normal text-gray-700">
                 Choose a Song
               </FormLabel>
-              {token ? (
-                <SearchBar token={token} form={form} field={field} />
-              ) : (
-                <p>Loading...</p>
-              )}
+              <FormControl>
+                {token ? (
+                  <SearchBar token={token} form={form} field={field} />
+                ) : (
+                  <p>Loading...</p>
+                )}
+              </FormControl>
             </FormItem>
           )}
         />
